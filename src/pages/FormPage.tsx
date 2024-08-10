@@ -20,14 +20,14 @@ const Navbar: React.FC = () => {
           Pondicherry Stays
         </Heading>
         <Flex gap={4}>
+          <Link to="/">
+            <Text color="white" fontSize="lg" _hover={{ color: 'teal.400' }}>
+              Home
+            </Text>
+          </Link>
           <Link to="/explore">
             <Text color="white" fontSize="lg" _hover={{ color: 'teal.400' }}>
               Explore
-            </Text>
-          </Link>
-          <Link to="/contact">
-            <Text color="white" fontSize="lg" _hover={{ color: 'teal.400' }}>
-              Contact
             </Text>
           </Link>
         </Flex>

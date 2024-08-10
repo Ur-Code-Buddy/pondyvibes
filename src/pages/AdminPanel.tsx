@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Flex, Heading, FormControl, FormLabel, Input, Button, useColorMode, Stack, useToast } from '@chakra-ui/react';
+import { Box, Flex, Heading, FormControl, FormLabel, Textarea, Button, useColorMode, Stack, useToast } from '@chakra-ui/react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 const AdminPanel: React.FC = () => {
   const { colorMode } = useColorMode();
@@ -9,24 +8,34 @@ const AdminPanel: React.FC = () => {
   const bgColor = { light: 'white', dark: 'gray.700' };
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const [message, setMessage] = useState('');
+  const [uploading, setUploading] = useState(false);
   const toast = useToast();
 
-  const handleLogin = async () => {
-    setLoading(true);
+  const handleMessageUpload = async () => {
+    setUploading(true);
     try {
-      const response = await axios.post('https://backend.example.com/verify', {
-        username,
-        password,
-      });
+      const response = await axios.post('https://backend.example.com/upload',
+        { message },
+        {
+          headers: {
+            'Authorization': `Basic ${btoa(`${username}:${password}`)}`,
+          },
+        }
+      );
 
       if (response.data.success) {
-        navigate('/adminpanel');
+        toast({
+          title: 'Message Uploaded',
+          description: 'Your message has been successfully uploaded.',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
       } else {
         toast({
-          title: 'Login failed',
-          description: 'Invalid username or password.',
+          title: 'Upload Failed',
+          description: 'There was an issue uploading your message.',
           status: 'error',
           duration: 5000,
           isClosable: true,
@@ -35,13 +44,13 @@ const AdminPanel: React.FC = () => {
     } catch (error) {
       toast({
         title: 'Error',
-        description: 'An error occurred while trying to log in.',
+        description: 'An error occurred while trying to upload the message.',
         status: 'error',
         duration: 5000,
         isClosable: true,
       });
     } finally {
-      setLoading(false);
+      setUploading(false);
     }
   };
 
@@ -62,32 +71,20 @@ const AdminPanel: React.FC = () => {
         bg="rgba(255, 255, 255, 0.8)"
         borderRadius="md"
         boxShadow="lg"
-        maxW="400px"
+        maxW="500px"
         width="100%"
       >
         <Heading as="h2" size="xl" mb={6} color="gray.800">
-          Admin Login
+          Upload Message
         </Heading>
         <Stack spacing={4}>
-          <FormControl id="username" isRequired>
-            <FormLabel color="gray.800">Username</FormLabel>
-            <Input
-              type="text"
-              placeholder="Enter your username"
+          <FormControl id="message" isRequired>
+            <FormLabel color="gray.800">Message</FormLabel>
+            <Textarea
+              placeholder="Enter your message here..."
               color="gray.700"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </FormControl>
-
-          <FormControl id="password" isRequired>
-            <FormLabel color="gray.800">Password</FormLabel>
-            <Input
-              type="password"
-              placeholder="Enter your password"
-              color="gray.700"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
             />
           </FormControl>
 
@@ -95,10 +92,10 @@ const AdminPanel: React.FC = () => {
             colorScheme="teal"
             mt={4}
             width="full"
-            isLoading={loading}
-            onClick={handleLogin}
+            isLoading={uploading}
+            onClick={handleMessageUpload}
           >
-            Login
+            Upload
           </Button>
         </Stack>
       </Box>
