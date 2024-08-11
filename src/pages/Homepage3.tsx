@@ -1,14 +1,16 @@
 import React from 'react';
-import { Box, Flex, Heading, Text, Image, Stack, Button, useColorMode } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, Image, Stack, Button, useColorMode, Collapse, IconButton, useDisclosure } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
 const Navbar: React.FC = () => {
   const { colorMode } = useColorMode();
+  const { isOpen, onToggle } = useDisclosure();
   const textColor = { light: 'white', dark: 'gray.800' };
 
   return (
     <Box
-      bg="linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0))"
+      bg="linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8))"
       p={4}
       position="fixed"
       width="100%"
@@ -16,17 +18,28 @@ const Navbar: React.FC = () => {
       backdropFilter="blur(10px)"
     >
       <Flex justify="space-between" align="center" maxW="1200px" mx="auto">
-        <Heading as="h1" size="lg" color={textColor[colorMode]}>
+        <Heading as="h1" size="lg" color="white">
           Pondicherry Stays
         </Heading>
-        <Flex gap={4}>
+        <IconButton
+          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+          aria-label="Toggle Navigation"
+          display={{ base: 'block', md: 'none' }}
+          onClick={onToggle}
+        />
+        <Flex
+          display={{ base: isOpen ? 'flex' : 'none', md: 'flex' }}
+          direction={{ base: 'column', md: 'row' }}
+          align="center"
+          gap={4}
+        >
           <Link to="/explore">
-            <Text color={textColor[colorMode]} fontSize="lg" _hover={{ color: 'teal.400' }}>
+            <Text color="white" fontSize="lg" _hover={{ color: 'teal.400' }}>
               Explore
             </Text>
           </Link>
           <Link to="/contact">
-            <Text color={textColor[colorMode]} fontSize="lg" _hover={{ color: 'teal.400' }}>
+            <Text color="white" fontSize="lg" _hover={{ color: 'teal.400' }}>
               Contact
             </Text>
           </Link>
@@ -38,7 +51,7 @@ const Navbar: React.FC = () => {
 
 const HeroSection: React.FC = () => (
   <Flex
-    height="100vh"
+    height={{ base: '70vh', md: '100vh' }}
     align="center"
     justify="center"
     bgImage="url('https://images.unsplash.com/photo-1597073642928-48c0971f7ded?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
@@ -46,16 +59,17 @@ const HeroSection: React.FC = () => (
     bgPosition="center"
     color="white"
     textAlign="center"
+    p={4}
   >
-    <Box p={8} bg="rgba(0, 0, 0, 0.)" borderRadius="md" boxShadow="lg">
-      <Heading as="h1" size="3xl" mb={6} textShadow="2px 2px 8px rgba(0, 0, 0, 0.8)">
+    <Box p={8} bg="rgba(0, 0, 0, 0.5)" borderRadius="md" boxShadow="lg">
+      <Heading as="h1" size={{ base: '2xl', md: '3xl' }} mb={6} textShadow="2px 2px 8px rgba(0, 0, 0, 0.8)">
         Discover the Magic of Pondicherry
       </Heading>
-      <Text fontSize="xl" mb={6} textShadow="2px 2px 8px rgba(0, 0, 0, 0.8)">
+      <Text fontSize={{ base: 'lg', md: 'xl' }} mb={6} textShadow="2px 2px 8px rgba(0, 0, 0, 0.8)">
         Where history, culture, and the sea meet.
       </Text>
       <Link to="/explore">
-        <Button size="lg" colorScheme="teal">
+        <Button size={{ base: 'md', md: 'lg' }} colorScheme="teal">
           Start Your Journey
         </Button>
       </Link>
@@ -74,10 +88,10 @@ const Section: React.FC<{ image: string; text: string; reverse?: boolean }> = ({
 
   return (
     <Flex
-      direction={reverse ? 'row-reverse' : 'row'}
+      direction={{ base: reverse ? 'column-reverse' : 'column', md: reverse ? 'row-reverse' : 'row' }}
       align="center"
-      justify="space-between"
-      p={8}
+      justify="center"
+      p={{ base: 4, md: 8 }}
       maxW="1200px"
       mx="auto"
       bg={bgColor[colorMode]}
@@ -89,8 +103,8 @@ const Section: React.FC<{ image: string; text: string; reverse?: boolean }> = ({
       <Box flex="1">
         <Image src={image} alt="Pondicherry" borderRadius="md" boxShadow="md" />
       </Box>
-      <Box flex="1" p={8}>
-        <Text fontSize="xl" color={textColor[colorMode]}>
+      <Box flex="1" p={{ base: 4, md: 8 }}>
+        <Text fontSize={{ base: 'md', md: 'xl' }} color={textColor[colorMode]}>
           {text}
         </Text>
       </Box>
@@ -100,9 +114,11 @@ const Section: React.FC<{ image: string; text: string; reverse?: boolean }> = ({
 
 const Footer: React.FC = () => (
   <Box bg="gray.100" p={4} mt={16}>
-    <Flex justify="space-between" align="center" maxW="1200px" mx="auto">
-      <Text color="gray.600">© 2024 Pondicherry Stays. All rights reserved.</Text>
-      <Flex gap={4}>
+    <Flex direction={{ base: 'column', md: 'row' }} justify="space-between" align="center" maxW="1200px" mx="auto">
+      <Text color="gray.600" textAlign={{ base: 'center', md: 'left' }}>
+        © 2024 Pondicherry Stays. All rights reserved.
+      </Text>
+      <Flex gap={4} direction={{ base: 'column', md: 'row' }} align="center">
         <Link to="/privacy">
           <Text color="gray.600" _hover={{ color: 'teal.500' }}>
             Privacy Policy
@@ -149,3 +165,4 @@ const Homepage: React.FC = () => {
 };
 
 export default Homepage;
+
