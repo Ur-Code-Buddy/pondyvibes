@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
               Explore
             </Text>
           </Link>
-          <Link to="/contact">
+          <Link to="/form">
             <Text color="white" fontSize="lg" _hover={{ color: 'teal.400' }}>
               Contact
             </Text>
