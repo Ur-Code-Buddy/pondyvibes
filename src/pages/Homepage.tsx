@@ -71,7 +71,7 @@ const HeroSection: React.FC = () => (
       <Text fontSize={{ base: 'lg', md: 'xl' }} mb={6} textShadow="2px 2px 8px rgba(0, 0, 0, 0.8)">
         Where history, culture, and the sea meet.
       </Text>
-      <Link to="/explore">
+      <Link to="/form">
         <Button size={{ base: 'md', md: 'lg' }} colorScheme="teal">
           Start Your Journey
         </Button>

@@ -4,12 +4,14 @@ import FormPage from "./pages/FormPage";
 import LoginPanel from "./pages/Login";
 import AdminPanel from "./pages/AdminPanel";
 import Explore from "./pages/Explore";
+import ImagePage from "./pages/ImagePanel";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/image" element={<ImagePage/>} />
         <Route path="/form" element={<FormPage/>} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/login" element={<LoginPanel/>} />
