@@ -3,7 +3,7 @@ import { Box, Flex, Heading, Text, Input, FormControl, FormLabel, Button, useCol
 import DatePicker from 'react-datepicker'; // Import the DatePicker component
 import 'react-datepicker/dist/react-datepicker.css'; // Import DatePicker styles
 import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate from react-router-dom
-import { Resend } from 'resend'; // Import Resend
+import axios from 'axios'; // Import Axios
 
 const Navbar: React.FC = () => {
   return (
@@ -46,11 +46,9 @@ const FormPage: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevent the default form submission
-    const resend = new Resend('re_969SRGLW_FFtjThB9GvhpV3M76V5B4fVf');
-    // Assert event.currentTarget as HTMLFormElement
-    const form = event.currentTarget as HTMLFormElement;
-  
+
     // Collect form data
+    const form = event.currentTarget as HTMLFormElement;
     const formData = new FormData(form);
     const data = {
       firstName: formData.get('first-name') as string,
@@ -62,9 +60,9 @@ const FormPage: React.FC = () => {
       numPersons: formData.get('num-persons') as string,
       numRooms: formData.get('num-rooms') as string,
       roomType: formData.get('ac-nonac') as string,
-      info: formData.get('info') as string
+      info: formData.get('info') as string,
     };
-  
+
     // Format email content
     const emailBody = `
       <h1>Booking Request</h1>
@@ -79,24 +77,22 @@ const FormPage: React.FC = () => {
       <p><strong>Room Type:</strong> ${data.roomType}</p>
       <p><strong>Additional Information / Special Requests:</strong> ${data.info}</p>
     `;
-  
+
     try {
-      const { error } = await resend.emails.send({
-        from: 'Baivab <baivabprojects.site>',
-        to: ['05baivab@gmail.com'], // Replace with your email
+      // Make the POST request
+      const response = await axios.post('/send_mail', {
         subject: 'New Booking Request',
         html: emailBody,
       });
-  
-      if (error) {
-        console.error({ error });
+
+      if (response.status === 200) {
+        console.log('Form submitted successfully');
+        alert('Form has been submitted'); // Show a popup
+        navigate('/'); // Redirect to the home page
+      } else {
+        console.error('Failed to send the form:', response);
         alert('Failed to send the form. Please try again.');
-        return;
       }
-  
-      console.log('Form submitted successfully');
-      alert('Form has been submitted'); // Show a popup
-      navigate('/'); // Redirect to the home page
     } catch (error) {
       console.error('Error sending email:', error);
       alert('An error occurred. Please try again.');
