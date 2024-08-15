@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Flex, Heading, Text, Input, FormControl, FormLabel, Button, useColorMode, Stack, Grid, GridItem, Select } from '@chakra-ui/react';
 import DatePicker from 'react-datepicker'; // Import the DatePicker component
 import 'react-datepicker/dist/react-datepicker.css'; // Import DatePicker styles
 import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate from react-router-dom
-import {Resend} from 'resend'; // Import Resend
+import { Resend } from 'resend'; // Import Resend
 
 const Navbar: React.FC = () => {
   const { colorMode } = useColorMode();
@@ -43,6 +43,9 @@ const FormPage: React.FC = () => {
   const bgColor = { light: 'white', dark: 'gray.700' };
   const navigate = useNavigate(); // Initialize useNavigate hook
 
+  const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const [endDate, setEndDate] = useState<Date | null>(new Date(new Date().setDate(new Date().getDate() + 2)));
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevent the default form submission
     const resend = new Resend('re_969SRGLW_FFtjThB9GvhpV3M76V5B4fVf');
@@ -56,8 +59,8 @@ const FormPage: React.FC = () => {
       lastName: formData.get('last-name') as string,
       email: formData.get('email') as string,
       phone: formData.get('phone') as string,
-      dateFrom: formData.get('date-from') as string,
-      dateTo: formData.get('date-to') as string,
+      dateFrom: startDate?.toISOString() ?? '',
+      dateTo: endDate?.toISOString() ?? '',
       numPersons: formData.get('num-persons') as string,
       numRooms: formData.get('num-rooms') as string,
       roomType: formData.get('ac-nonac') as string,
@@ -102,7 +105,6 @@ const FormPage: React.FC = () => {
     }
   };
 
-
   return (
     <>
       <Navbar />
@@ -134,28 +136,28 @@ const FormPage: React.FC = () => {
                 <GridItem>
                   <FormControl id="first-name" isRequired>
                     <FormLabel color="gray.800">First Name</FormLabel>
-                    <Input type="text" placeholder="John" color="gray.700" />
+                    <Input type="text" name="first-name" placeholder="John" color="gray.700" />
                   </FormControl>
                 </GridItem>
 
                 <GridItem>
                   <FormControl id="last-name">
                     <FormLabel color="gray.800">Last Name</FormLabel>
-                    <Input type="text" placeholder="Doe" color="gray.700" />
+                    <Input type="text" name="last-name" placeholder="Doe" color="gray.700" />
                   </FormControl>
                 </GridItem>
 
                 <GridItem>
                   <FormControl id="email" isRequired>
                     <FormLabel color="gray.800">Email Address</FormLabel>
-                    <Input type="email" placeholder="example@example.com" color="gray.700" />
+                    <Input type="email" name="email" placeholder="example@example.com" color="gray.700" />
                   </FormControl>
                 </GridItem>
 
                 <GridItem>
                   <FormControl id="phone" isRequired>
                     <FormLabel color="gray.800">Phone Number</FormLabel>
-                    <Input type="tel" placeholder="123-456-7890" color="gray.700" />
+                    <Input type="tel" name="phone" placeholder="123-456-7890" color="gray.700" pattern="\d{10}" title="Phone number must be 10 digits" />
                   </FormControl>
                 </GridItem>
 
@@ -163,8 +165,8 @@ const FormPage: React.FC = () => {
                   <FormControl id="date-from" isRequired>
                     <FormLabel color="gray.800">Date of Stay (From)</FormLabel>
                     <DatePicker
-                      selected={new Date()}
-                      onChange={(date) => console.log(date)}
+                      selected={startDate}
+                      onChange={(date) => setStartDate(date as Date)}
                       dateFormat="MMMM d, yyyy"
                       className="react-datepicker__input-container"
                       customInput={<Input placeholder="Select start date" color="gray.700" />}
@@ -176,8 +178,8 @@ const FormPage: React.FC = () => {
                   <FormControl id="date-to" isRequired>
                     <FormLabel color="gray.800">Date of Stay (To)</FormLabel>
                     <DatePicker
-                      selected={new Date()}
-                      onChange={(date) => console.log(date)}
+                      selected={endDate}
+                      onChange={(date) => setEndDate(date as Date)}
                       dateFormat="MMMM d, yyyy"
                       className="react-datepicker__input-container"
                       customInput={<Input placeholder="Select end date" color="gray.700" />}
@@ -188,21 +190,21 @@ const FormPage: React.FC = () => {
                 <GridItem>
                   <FormControl id="num-persons" isRequired>
                     <FormLabel color="gray.800">Number of Persons</FormLabel>
-                    <Input type="number" placeholder="Enter number of persons" color="gray.700" />
+                    <Input type="number" name="num-persons" placeholder="Enter number of persons" color="gray.700" min={1} max={100} defaultValue={2} />
                   </FormControl>
                 </GridItem>
 
                 <GridItem>
                   <FormControl id="num-rooms" isRequired>
                     <FormLabel color="gray.800">Number of Rooms</FormLabel>
-                    <Input type="number" placeholder="Enter number of rooms" color="gray.700" />
+                    <Input type="number" name="num-rooms" placeholder="Enter number of rooms" color="gray.700" min={1} max={10} defaultValue={1} />
                   </FormControl>
                 </GridItem>
 
                 <GridItem colSpan={2}>
                   <FormControl id="ac-nonac" isRequired>
                     <FormLabel color="gray.800">Room Type</FormLabel>
-                    <Select placeholder="Select room type" color="white.700">
+                    <Select name="ac-nonac" placeholder="Select room type" color="gray.700">
                       <option value="ac">AC</option>
                       <option value="non-ac">Non-AC</option>
                     </Select>
@@ -212,11 +214,11 @@ const FormPage: React.FC = () => {
                 <GridItem colSpan={2}>
                   <FormControl id="info">
                     <FormLabel color="gray.800">Additional Information / Special Requests</FormLabel>
-                    <Input type="text" placeholder="Any additional information or special requests" color="gray.700" />
+                    <Input type="text" name="info" placeholder="Any additional information or special requests" color="gray.700" />
                   </FormControl>
                 </GridItem>
               </Grid>
-              <Button colorScheme="teal" mt={4} type="submit"> {/* Set button type to "submit" */}
+              <Button colorScheme="teal" mt={4} type="submit">
                 Submit
               </Button>
             </Stack>
