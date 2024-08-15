@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavi
 import { Resend } from 'resend'; // Import Resend
 
 const Navbar: React.FC = () => {
-  const { colorMode } = useColorMode();
   return (
     <Box
       bg="linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8))"
@@ -39,7 +38,6 @@ const Navbar: React.FC = () => {
 
 const FormPage: React.FC = () => {
   const { colorMode } = useColorMode();
-  const textColor = { light: 'gray.800', dark: 'white' };
   const bgColor = { light: 'white', dark: 'gray.700' };
   const navigate = useNavigate(); // Initialize useNavigate hook
 
@@ -157,7 +155,7 @@ const FormPage: React.FC = () => {
                 <GridItem>
                   <FormControl id="phone" isRequired>
                     <FormLabel color="gray.800">Phone Number</FormLabel>
-                    <Input type="tel" name="phone" placeholder="123-456-7890" color="gray.700" pattern="\d{10}" title="Phone number must be 10 digits" />
+                    <Input type="number" name="phone" placeholder="123-456-7890" color="gray.700" />
                   </FormControl>
                 </GridItem>
 

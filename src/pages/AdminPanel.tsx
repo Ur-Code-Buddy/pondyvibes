@@ -4,10 +4,9 @@ import axios from 'axios';
 
 const AdminPanel: React.FC = () => {
   const { colorMode } = useColorMode();
-  const textColor = { light: 'gray.800', dark: 'white' };
   const bgColor = { light: 'white', dark: 'gray.700' };
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const username = "";
+  const password = "";
   const [message, setMessage] = useState('');
   const [uploading, setUploading] = useState(false);
   const toast = useToast();

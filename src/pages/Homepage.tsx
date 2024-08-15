@@ -2,14 +2,12 @@
 
 
 import React from 'react';
-import { Box, Flex, Heading, Text, Image, Stack, Button, useColorMode, Collapse, IconButton, useDisclosure } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, Image, Stack, Button, useColorMode, IconButton, useDisclosure } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
 const Navbar: React.FC = () => {
-  const { colorMode } = useColorMode();
   const { isOpen, onToggle } = useDisclosure();
-  const textColor = { light: 'white', dark: 'gray.800' };
 
   return (
     <Box
