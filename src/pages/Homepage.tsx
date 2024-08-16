@@ -1,7 +1,4 @@
-//made it mobile friendly too
-
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Flex, Heading, Text, Image, Stack, Button, useColorMode, IconButton, useDisclosure } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
@@ -50,33 +47,52 @@ const Navbar: React.FC = () => {
   );
 };
 
-const HeroSection: React.FC = () => (
-  <Flex
-    height={{ base: '70vh', md: '100vh' }}
-    align="center"
-    justify="center"
-    bgImage="url('https://images.unsplash.com/photo-1597073642928-48c0971f7ded?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
-    bgSize="cover"
-    bgPosition="center"
-    color="white"
-    textAlign="center"
-    p={4}
-  >
-    <Box p={8} bg="rgba(0, 0, 0, 0.5)" borderRadius="md" boxShadow="lg">
-      <Heading as="h1" size={{ base: '2xl', md: '3xl' }} mb={6} textShadow="2px 2px 8px rgba(0, 0, 0, 0.8)">
-        Discover the Magic of Pondicherry
-      </Heading>
-      <Text fontSize={{ base: 'lg', md: 'xl' }} mb={6} textShadow="2px 2px 8px rgba(0, 0, 0, 0.8)">
-        Where history, culture, and the sea meet.
-      </Text>
-      <Link to="/explore">
-        <Button size={{ base: 'md', md: 'lg' }} colorScheme="teal">
-          Start Your Journey
-        </Button>
-      </Link>
-    </Box>
-  </Flex>
-);
+const HeroSection: React.FC = () => {
+  const texts = [
+    'Book Your Dream Stay in Pondicherry Today',
+    'Stay Where Comfort Meets Elegance',
+    'Your Stay, Your Way in Pondicherry',
+    'Seamless Hotel Bookings for Your Pondicherry Adventure',
+    'Reserve a Room, Create a Memory',
+    'Luxury and Comfort Awaits You',
+    'Relax, Unwind, and Rejuvenate in Style',
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % texts.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [texts.length]);
+
+  return (
+    <Flex
+      height={{ base: '70vh', md: '100vh' }}
+      align="center"
+      justify="center"
+      bgImage="url('https://images.unsplash.com/photo-1597073642928-48c0971f7ded?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
+      bgSize="cover"
+      bgPosition="center"
+      color="white"
+      textAlign="center"
+      p={4}
+    >
+      <Box p={8} bg="rgba(0, 0, 0, 0.5)" borderRadius="md" boxShadow="lg">
+        <Heading as="h1" size={{ base: '2xl', md: '3xl' }} mb={6} textShadow="2px 2px 8px rgba(0, 0, 0, 0.8)">
+          {texts[index]}
+        </Heading>
+        <Link to="/explore">
+          <Button size={{ base: 'md', md: 'lg' }} colorScheme="teal">
+            Start Your Journey
+          </Button>
+        </Link>
+      </Box>
+    </Flex>
+  );
+};
 
 const Section: React.FC<{ image: string; text: string; reverse?: boolean }> = ({
   image,
