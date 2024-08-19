@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
-import { Button } from '@chakra-ui/react';
+import { Button, useToast } from '@chakra-ui/react';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,30 @@ const FormPage: React.FC = () => {
   const today = new Date();
   const [startDate, setStartDate] = useState<Date | null>(today);
   const [endDate, setEndDate] = useState<Date | null>(new Date(today.getTime() + 86400000));
+  const toast = useToast();
+
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const response = await axios.get('https://pondyvibes.05baivab.workers.dev/get_content');
+        console.log(response);
+        if (response.data.success) {
+          toast({
+            title: response.data.content,
+            status: 'info',
+            duration: 5000,
+            isClosable: true,
+            position: "top-right"
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching content:', error);
+      }
+    };
+
+    fetchContent();
+  }, [toast]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
