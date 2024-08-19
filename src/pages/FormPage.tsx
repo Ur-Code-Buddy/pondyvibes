@@ -18,7 +18,7 @@ const FormPage: React.FC = () => {
       try {
         const response = await axios.get('https://pondyvibes.05baivab.workers.dev/get_content');
         if (response.data.success) {
-          toast({ title: response.data.content, status: 'info', duration: 15000, isClosable: true, position: "top-right" });
+          toast({ title: response.data.content, status: 'info', duration: 15000, isClosable: true, position: "bottom-left" });
         }
       } catch (error) {
         console.error('Error fetching content:', error);
