@@ -28,6 +28,7 @@ const FormPage: React.FC = () => {
   }, [toast]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data = { firstName: formData.get('first-name') as string, lastName: formData.get('last-name') as string, email: formData.get('email') as string, phone: formData.get('phone') as string, dateFrom: startDate?.toISOString() ?? '', dateTo: endDate?.toISOString() ?? '', numPersons: formData.get('num-persons') as string, numRooms: formData.get('num-rooms') as string, roomType: formData.get('ac-nonac') as string, info: formData.get('info') as string };
@@ -58,7 +59,7 @@ const FormPage: React.FC = () => {
       >
         <div className="bg-white bg-opacity-90 p-4 rounded-lg shadow-lg w-full max-w-2xl mx-auto border border-gray-300 mb-8">
           <h2 className="text-xl font-semibold mb-3 text-gray-800 text-center">Book Your Stay</h2>
-          <form name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div><label htmlFor="first-name" className="block text-gray-800 font-medium mb-1 text-sm">First Name</label><input type="text" name="first-name" id="first-name" className="w-full border border-gray-300 p-1 rounded text-sm" placeholder="John" required /></div>
               <div><label htmlFor="last-name" className="block text-gray-800 font-medium mb-1 text-sm">Last Name</label><input type="text" name="last-name" id="last-name" className="w-full border border-gray-300 p-1 rounded text-sm" placeholder="Doe" /></div>
