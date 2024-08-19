@@ -50,10 +50,14 @@ const captions = [
 ];
 
 export function ImagePage() {
+  const navLinks = [
+    { name: 'Homepage', path: '/' },
+    { name: 'Contact', path: '/form' },
+  ];
   return (
     <div className="relative min-h-screen bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1476900543704-4312b78632f8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}>
       <div className="absolute inset-0 bg-black/50"></div> {/* Optional overlay for better text readability */}
-      <Navbar />
+      <Navbar links={navLinks} />
       <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         {imageUrls.map((url, index) => (
           <CardContainer key={index} className="inter-var w-full">

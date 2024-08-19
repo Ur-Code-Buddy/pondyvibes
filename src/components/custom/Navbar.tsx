@@ -3,7 +3,11 @@ import { Box, Flex, Heading, Text, IconButton, useDisclosure } from '@chakra-ui/
 import { Link } from 'react-router-dom';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  links: { name: string, path: string }[];
+}
+
+const Navbar: React.FC<NavbarProps> = ({ links }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -31,16 +35,13 @@ const Navbar: React.FC = () => {
           align="center"
           gap={4}
         >
-          <Link to="/explore">
-            <Text color="white" fontSize="lg" _hover={{ color: 'teal.400' }}>
-              Explore
-            </Text>
-          </Link>
-          <Link to="/form">
-            <Text color="white" fontSize="lg" _hover={{ color: 'teal.400' }}>
-              Contact
-            </Text>
-          </Link>
+          {links.map((link, index) => (
+            <Link key={index} to={link.path}>
+              <Text color="white" fontSize="lg" _hover={{ color: 'teal.400' }}>
+                {link.name}
+              </Text>
+            </Link>
+          ))}
         </Flex>
       </Flex>
     </Box>

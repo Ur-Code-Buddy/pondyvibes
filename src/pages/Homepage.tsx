@@ -108,9 +108,13 @@ const Footer: React.FC = () => (
 );
 
 const Homepage: React.FC = () => {
+  const navLinks = [
+    { name: 'Explore', path: '/explore' },
+    { name: 'Contact', path: '/form' },
+  ];
   return (
     <>
-      <Navbar />
+      <Navbar links={navLinks} />
       <HeroSection />
       <Stack spacing={16} mt={-24} bg="white">
         <Section

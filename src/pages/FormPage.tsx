@@ -28,6 +28,7 @@ const FormPage: React.FC = () => {
   }, [toast]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data = { firstName: formData.get('first-name') as string, lastName: formData.get('last-name') as string, email: formData.get('email') as string, phone: formData.get('phone') as string, dateFrom: startDate?.toISOString() ?? '', dateTo: endDate?.toISOString() ?? '', numPersons: formData.get('num-persons') as string, numRooms: formData.get('num-rooms') as string, roomType: formData.get('ac-nonac') as string, info: formData.get('info') as string };
@@ -45,10 +46,15 @@ const FormPage: React.FC = () => {
     }
   };
 
+  const navLinks = [
+    { name: 'Homepage', path: '/' },
+    { name: 'Explore', path: '/explore' },
+  ];
+
   return (
     <div className="relative min-h-screen flex flex-col">
-      <Navbar />
-      <div className="flex-1 flex items-center justify-center bg-cover bg-center pt-20"
+      <Navbar links={navLinks} />
+      <div className="flex-1 flex items-center justify-center bg-cover bg-center pt-10"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1582549023823-b5984434f8f7?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
       >
         <div className="bg-white bg-opacity-90 p-4 rounded-lg shadow-lg w-full max-w-2xl mx-auto border border-gray-300 mb-8">
