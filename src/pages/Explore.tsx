@@ -1,5 +1,6 @@
 
 import { CardBody, CardContainer, CardItem } from "../components/ui/3d-card";
+import Navbar from '../components/custom/Navbar'; // Import the Navbar component
 
 const imageUrls = [
   'https://www.wanderershub.com/wp-content/uploads/2023/09/Cafe-des-Art-Puducherry.jpg',
@@ -36,7 +37,7 @@ const imageUrls = [
   'https://static2.tripoto.com/media/filter/tst/img/183810/TripDocument/1440998902_img_20141113_063611712_hdr.jpg',
 
 
-]
+] // Paste your image URLs here
 
 const captions = [
   "A serene view of Pondicherry's charming streets.",
@@ -52,6 +53,7 @@ export function ImagePage() {
   return (
     <div className="relative min-h-screen bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1476900543704-4312b78632f8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}>
       <div className="absolute inset-0 bg-black/50"></div> {/* Optional overlay for better text readability */}
+      <Navbar />
       <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         {imageUrls.map((url, index) => (
           <CardContainer key={index} className="inter-var w-full">
