@@ -12,7 +12,6 @@ const FormPage: React.FC = () => {
   const [endDate, setEndDate] = useState<Date | null>(new Date(today.getTime() + 86400000));
   const toast = useToast();
 
-
   useEffect(() => {
     const fetchContent = async () => {
       try {
@@ -72,171 +71,187 @@ const FormPage: React.FC = () => {
       });
 
       if (response.status === 200) {
-        alert('Form has been submitted');
+        toast({
+          title: 'Form Submitted',
+          description: 'Your form has been submitted successfully.',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
         navigate('/');
       } else {
-        alert('Failed to send the form. Please try again.');
+        toast({
+          title: 'Submission Failed',
+          description: 'Failed to send the form. Please try again.',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
       }
     } catch (error) {
-      alert('An error occurred. Please try again.');
+      toast({
+        title: 'Error',
+        description: 'An error occurred while submitting the form. Please try again.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
   return (
-    <>
-      <div className="relative min-h-screen flex flex-col justify-center items-center bg-cover bg-center"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1582549023823-b5984434f8f7?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
-      >
-        <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-4xl mx-auto border border-gray-300">
-          <h2 className="text-3xl font-bold mb-6 text-gray-800 text-center">Book Your Stay</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="relative min-h-screen flex flex-col justify-center items-center bg-cover bg-center"
+      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1582549023823-b5984434f8f7?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
+    >
+      <div className="bg-white bg-opacity-90 p-6 rounded-lg shadow-lg w-full max-w-3xl mx-auto border border-gray-300">
+        <h2 className="text-2xl font-semibold mb-4 text-gray-800 text-center">Book Your Stay</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+              <label htmlFor="first-name" className="block text-gray-800 font-medium mb-1">
+                First Name
+              </label>
+              <input
+                type="text"
+                name="first-name"
+                id="first-name"
+                className="w-full border border-gray-300 p-1 rounded"
+                placeholder="John"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="last-name" className="block text-gray-800 font-medium mb-1">
+                Last Name
+              </label>
+              <input
+                type="text"
+                name="last-name"
+                id="last-name"
+                className="w-full border border-gray-300 p-1 rounded"
+                placeholder="Doe"
+              />
+            </div>
+            <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
-                <label htmlFor="first-name" className="block text-gray-800 font-semibold mb-2">
-                  First Name
+                <label htmlFor="email" className="block text-gray-800 font-medium mb-1">
+                  Email Address
                 </label>
                 <input
-                  type="text"
-                  name="first-name"
-                  id="first-name"
-                  className="w-full border border-gray-300 p-2 rounded"
-                  placeholder="John"
+                  type="email"
+                  name="email"
+                  id="email"
+                  className="w-full border border-gray-300 p-1 rounded"
+                  placeholder="example@example.com"
                   required
                 />
               </div>
               <div>
-                <label htmlFor="last-name" className="block text-gray-800 font-semibold mb-2">
-                  Last Name
+                <label htmlFor="phone" className="block text-gray-800 font-medium mb-1">
+                  Phone Number
                 </label>
                 <input
-                  type="text"
-                  name="last-name"
-                  id="last-name"
-                  className="w-full border border-gray-300 p-2 rounded"
-                  placeholder="Doe"
-                />
-              </div>
-              <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="email" className="block text-gray-800 font-semibold mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    className="w-full border border-gray-300 p-2 rounded"
-                    placeholder="example@example.com"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-gray-800 font-semibold mb-2">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    id="phone"
-                    className="w-full border border-gray-300 p-2 rounded"
-                    placeholder="123-456-7890"
-                    pattern="[0-9]*"
-                    inputMode="numeric"
-                    required
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="date-from" className="block text-gray-800 font-semibold mb-2">
-                  Date of Stay (From)
-                </label>
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date as Date)}
-                  dateFormat="MMMM d, yyyy"
-                  minDate={today}
-                  className="w-full border border-gray-300 p-2 rounded"
-                />
-              </div>
-              <div>
-                <label htmlFor="date-to" className="block text-gray-800 font-semibold mb-2">
-                  Date of Stay (To)
-                </label>
-                <DatePicker
-                  selected={endDate}
-                  onChange={(date) => setEndDate(date as Date)}
-                  dateFormat="MMMM d, yyyy"
-                  minDate={startDate ? new Date(startDate.getTime() + 86400000) : today}
-                  className="w-full border border-gray-300 p-2 rounded"
-                />
-              </div>
-              <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="num-persons" className="block text-gray-800 font-semibold mb-2">
-                    Number of Persons
-                  </label>
-                  <input
-                    type="number"
-                    name="num-persons"
-                    id="num-persons"
-                    className="w-full border border-gray-300 p-2 rounded"
-                    min={1}
-                    max={10}
-                    defaultValue={1}
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="num-rooms" className="block text-gray-800 font-semibold mb-2">
-                    Number of Rooms
-                  </label>
-                  <input
-                    type="number"
-                    name="num-rooms"
-                    id="num-rooms"
-                    className="w-full border border-gray-300 p-2 rounded"
-                    min={1}
-                    max={10}
-                    defaultValue={1}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="md:col-span-2">
-                <label htmlFor="ac-nonac" className="block text-gray-800 font-semibold mb-2">
-                  Room Type
-                </label>
-                <select
-                  name="ac-nonac"
-                  id="ac-nonac"
-                  className="w-full border border-gray-300 p-2 rounded"
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  className="w-full border border-gray-300 p-1 rounded"
+                  placeholder="123-456-7890"
+                  pattern="[0-9]*"
+                  inputMode="numeric"
                   required
-                >
-                  <option value="ac">AC</option>
-                  <option value="non-ac">Non-AC</option>
-                </select>
-              </div>
-              <div className="md:col-span-2">
-                <label htmlFor="info" className="block text-gray-800 font-semibold mb-2">
-                  Additional Information / Special Requests
-                </label>
-                <textarea
-                  name="info"
-                  id="info"
-                  className="w-full border border-gray-300 p-2 rounded"
-                  placeholder="Any special requests?"
                 />
               </div>
             </div>
-            <div className="flex justify-center mt-4">
-              <Button type="submit" colorScheme="teal" size="lg" width="full">
-                Submit
-              </Button>
+            <div>
+              <label htmlFor="date-from" className="block text-gray-800 font-medium mb-1">
+                Date of Stay (From)
+              </label>
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date as Date)}
+                dateFormat="MMMM d, yyyy"
+                minDate={today}
+                className="w-full border border-gray-300 p-1 rounded"
+              />
             </div>
-          </form>
-        </div>
+            <div>
+              <label htmlFor="date-to" className="block text-gray-800 font-medium mb-1">
+                Date of Stay (To)
+              </label>
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => setEndDate(date as Date)}
+                dateFormat="MMMM d, yyyy"
+                minDate={startDate ? new Date(startDate.getTime() + 86400000) : today}
+                className="w-full border border-gray-300 p-1 rounded"
+              />
+            </div>
+            <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label htmlFor="num-persons" className="block text-gray-800 font-medium mb-1">
+                  Number of Persons
+                </label>
+                <input
+                  type="number"
+                  name="num-persons"
+                  id="num-persons"
+                  className="w-full border border-gray-300 p-1 rounded"
+                  min={1}
+                  max={10}
+                  defaultValue={1}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="num-rooms" className="block text-gray-800 font-medium mb-1">
+                  Number of Rooms
+                </label>
+                <input
+                  type="number"
+                  name="num-rooms"
+                  id="num-rooms"
+                  className="w-full border border-gray-300 p-1 rounded"
+                  min={1}
+                  max={10}
+                  defaultValue={1}
+                  required
+                />
+              </div>
+            </div>
+            <div className="md:col-span-2">
+              <label htmlFor="ac-nonac" className="block text-gray-800 font-medium mb-1">
+                Room Type
+              </label>
+              <select
+                name="ac-nonac"
+                id="ac-nonac"
+                className="w-full border border-gray-300 p-1 rounded"
+                required
+              >
+                <option value="ac">AC</option>
+                <option value="non-ac">Non-AC</option>
+              </select>
+            </div>
+            <div className="md:col-span-2">
+              <label htmlFor="info" className="block text-gray-800 font-medium mb-1">
+                Additional Information / Special Requests
+              </label>
+              <textarea
+                name="info"
+                id="info"
+                className="w-full border border-gray-300 p-1 rounded"
+                placeholder="Any special requests?"
+              />
+            </div>
+          </div>
+          <div className="flex justify-center mt-4">
+            <Button type="submit" colorScheme="teal" size="md" width="full">
+              Submit
+            </Button>
+          </div>
+        </form>
       </div>
-    </>
+    </div>
   );
 };
 
