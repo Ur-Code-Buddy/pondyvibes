@@ -84,7 +84,7 @@ const HeroSection: React.FC = () => {
         <Heading as="h1" size={{ base: '2xl', md: '3xl' }} mb={6} textShadow="2px 2px 8px rgba(0, 0, 0, 0.8)">
           {texts[index]}
         </Heading>
-        <Link to="/explore">
+        <Link to="/form">
           <Button size={{ base: 'md', md: 'lg' }} colorScheme="teal">
             Start Your Journey
           </Button>
