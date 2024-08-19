@@ -1,50 +1,56 @@
-# React + TypeScript + Vite
+# PondyVibes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PondyVibes is a web application designed for people interested in visiting Pondicherry. It allows users to explore various attractions, book hotels, and access relevant information to enhance their experience in this beautiful coastal city.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Homepage**: The landing page where users can learn about Pondicherry and get an overview of the services offered.
+- **FormPage**: A page where users can fill out a form to book hotels or other services.
+- **Explore**: A page where users can explore different attractions and activities available in Pondicherry.
+- **LoginPanel**: A login page for users to access their accounts.
+- **AdminPanel**: A page for administrators to manage bookings, users, and content.
+- **ImagePage**: A page dedicated to viewing and managing images related to Pondicherry.
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/pondyvibes.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd pondyvibes
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm start
+   ```
 
-- Configure the top-level `parserOptions` property like this:
+## Usage
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Access the app locally at `http://localhost:3000`.
+- Navigate through the app using the following routes:
+  - `/`: Homepage
+  - `/form`: FormPage
+  - `/explore`: Explore
+  - `/login`: LoginPanel
+  - `/adminpanel`: AdminPanel
+  - `/image`: ImagePage
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Technologies Used
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **React**: Frontend library
+- **React Router**: For navigation
+- **CSS/Chakra UI/Tailwind CSS**: For styling
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Contributing
+
+Contributions are welcome! Please feel free to submit a pull request or open an issue if you have any suggestions or improvements.
+
+## License
+
+This project is licensed under the MIT License.
