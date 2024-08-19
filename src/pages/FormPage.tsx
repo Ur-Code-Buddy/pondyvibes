@@ -1,56 +1,19 @@
 import React, { useState } from 'react';
-import { Box, Flex, Heading, Text, Input, FormControl, FormLabel, Button, useColorMode, Grid, GridItem, Select } from '@chakra-ui/react';
 import DatePicker from 'react-datepicker';
+import { Button } from '@chakra-ui/react';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
-const Navbar: React.FC = () => {
-  return (
-    <Box
-      bg="linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8))"
-      p={4}
-      width="100%"
-      zIndex="1000"
-      backdropFilter="blur(10px)"
-      position="fixed"
-      top="0"
-    >
-      <Flex justify="space-between" align="center" maxW="1200px" mx="auto">
-        <Heading as="h1" size="lg" color="white">
-          Pondicherry Stays
-        </Heading>
-        <Flex gap={4}>
-          <Link to="/">
-            <Text color="white" fontSize="lg" _hover={{ color: 'teal.400' }}>
-              Home
-            </Text>
-          </Link>
-          <Link to="/explore">
-            <Text color="white" fontSize="lg" _hover={{ color: 'teal.400' }}>
-              Explore
-            </Text>
-          </Link>
-        </Flex>
-      </Flex>
-    </Box>
-  );
-};
+import { useNavigate } from 'react-router-dom';
 
 const FormPage: React.FC = () => {
-  const { colorMode } = useColorMode();
-  const bgColor = { light: 'white', dark: 'gray.700' };
   const navigate = useNavigate();
-
   const today = new Date();
   const [startDate, setStartDate] = useState<Date | null>(today);
   const [endDate, setEndDate] = useState<Date | null>(new Date(today.getTime() + 86400000));
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const form = event.currentTarget as HTMLFormElement;
-    const formData = new FormData(form);
+    const formData = new FormData(event.currentTarget);
     const data = {
       firstName: formData.get('first-name') as string,
       lastName: formData.get('last-name') as string,
@@ -85,152 +48,170 @@ const FormPage: React.FC = () => {
       });
 
       if (response.status === 200) {
-        console.log('Form submitted successfully');
         alert('Form has been submitted');
         navigate('/');
       } else {
-        console.error('Failed to send the form:', response);
         alert('Failed to send the form. Please try again.');
       }
     } catch (error) {
-      console.error('Error sending email:', error);
       alert('An error occurred. Please try again.');
     }
   };
 
   return (
     <>
-      <Navbar />
-      <Flex
-        direction="column"
-        align="center"
-        justify="center"
-        minH="100vh"
-        bg={bgColor[colorMode]}
-        p={4}
-        pt="120px"
-        backgroundImage="url('https://images.unsplash.com/photo-1582549023823-b5984434f8f7?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
-        backgroundSize="cover"
-        backgroundPosition="center"
+      <div className="relative min-h-screen flex flex-col justify-center items-center bg-cover bg-center"
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1582549023823-b5984434f8f7?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
       >
-        <Box
-          p={8}
-          bg="rgba(255, 255, 255, 0.9)"
-          borderRadius="md"
-          boxShadow="lg"
-          maxW="800px"
-          width="100%"
-          border="1px"
-          borderColor="gray.300"
-        >
-          <Heading as="h2" size="xl" mb={6} color="gray.800">
-            Book Your Stay
-          </Heading>
+        <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-4xl mx-auto border border-gray-300">
+          <h2 className="text-3xl font-bold mb-6 text-gray-800 text-center">Book Your Stay</h2>
           <form onSubmit={handleSubmit}>
-            <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={4}>
-              <GridItem>
-                <FormControl id="first-name" isRequired>
-                  <FormLabel color="gray.800">First Name</FormLabel>
-                  <Input type="text" name="first-name" placeholder="John" color="gray.700" />
-                </FormControl>
-              </GridItem>
-
-              <GridItem>
-                <FormControl id="last-name">
-                  <FormLabel color="gray.800">Last Name</FormLabel>
-                  <Input type="text" name="last-name" placeholder="Doe" color="gray.700" />
-                </FormControl>
-              </GridItem>
-
-              <GridItem colSpan={{ base: 1, md: 2 }}>
-                <FormControl id="email" isRequired>
-                  <FormLabel color="gray.800">Email Address</FormLabel>
-                  <Input type="email" name="email" placeholder="example@example.com" color="gray.700" />
-                </FormControl>
-              </GridItem>
-
-              <GridItem colSpan={{ base: 1, md: 2 }}>
-                <FormControl id="phone" isRequired>
-                  <FormLabel color="gray.800">Phone Number</FormLabel>
-                  <Input
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="first-name" className="block text-gray-800 font-semibold mb-2">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  name="first-name"
+                  id="first-name"
+                  className="w-full border border-gray-300 p-2 rounded"
+                  placeholder="John"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="last-name" className="block text-gray-800 font-semibold mb-2">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  name="last-name"
+                  id="last-name"
+                  className="w-full border border-gray-300 p-2 rounded"
+                  placeholder="Doe"
+                />
+              </div>
+              <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="email" className="block text-gray-800 font-semibold mb-2">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    className="w-full border border-gray-300 p-2 rounded"
+                    placeholder="example@example.com"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-gray-800 font-semibold mb-2">
+                    Phone Number
+                  </label>
+                  <input
                     type="tel"
                     name="phone"
+                    id="phone"
+                    className="w-full border border-gray-300 p-2 rounded"
                     placeholder="123-456-7890"
-                    color="gray.700"
                     pattern="[0-9]*"
                     inputMode="numeric"
                     required
                   />
-                </FormControl>
-              </GridItem>
-
-              <GridItem>
-                <FormControl id="date-from" isRequired>
-                  <FormLabel color="gray.800">Date of Stay (From)</FormLabel>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date as Date)}
-                    dateFormat="MMMM d, yyyy"
-                    minDate={today}
-                    className="react-datepicker__input-container"
-                    customInput={<Input placeholder="Select start date" color="gray.700" />}
+                </div>
+              </div>
+              <div>
+                <label htmlFor="date-from" className="block text-gray-800 font-semibold mb-2">
+                  Date of Stay (From)
+                </label>
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date as Date)}
+                  dateFormat="MMMM d, yyyy"
+                  minDate={today}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
+              </div>
+              <div>
+                <label htmlFor="date-to" className="block text-gray-800 font-semibold mb-2">
+                  Date of Stay (To)
+                </label>
+                <DatePicker
+                  selected={endDate}
+                  onChange={(date) => setEndDate(date as Date)}
+                  dateFormat="MMMM d, yyyy"
+                  minDate={startDate ? new Date(startDate.getTime() + 86400000) : today}
+                  className="w-full border border-gray-300 p-2 rounded"
+                />
+              </div>
+              <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="num-persons" className="block text-gray-800 font-semibold mb-2">
+                    Number of Persons
+                  </label>
+                  <input
+                    type="number"
+                    name="num-persons"
+                    id="num-persons"
+                    className="w-full border border-gray-300 p-2 rounded"
+                    min={1}
+                    max={10}
+                    defaultValue={1}
+                    required
                   />
-                </FormControl>
-              </GridItem>
-
-              <GridItem>
-                <FormControl id="date-to" isRequired>
-                  <FormLabel color="gray.800">Date of Stay (To)</FormLabel>
-                  <DatePicker
-                    selected={endDate}
-                    onChange={(date) => setEndDate(date as Date)}
-                    dateFormat="MMMM d, yyyy"
-                    minDate={startDate ? new Date(startDate.getTime() + 86400000) : today}
-                    className="react-datepicker__input-container"
-                    customInput={<Input placeholder="Select end date" color="gray.700" />}
+                </div>
+                <div>
+                  <label htmlFor="num-rooms" className="block text-gray-800 font-semibold mb-2">
+                    Number of Rooms
+                  </label>
+                  <input
+                    type="number"
+                    name="num-rooms"
+                    id="num-rooms"
+                    className="w-full border border-gray-300 p-2 rounded"
+                    min={1}
+                    max={10}
+                    defaultValue={1}
+                    required
                   />
-                </FormControl>
-              </GridItem>
-
-              <GridItem colSpan={{ base: 1, md: 2 }}>
-                <FormControl id="num-persons" isRequired>
-                  <FormLabel color="gray.800">Number of Persons</FormLabel>
-                  <Input type="number" name="num-persons" placeholder="Enter number of persons" color="gray.700" min={1} max={10} defaultValue={1} />
-                </FormControl>
-              </GridItem>
-
-              <GridItem colSpan={{ base: 1, md: 2 }}>
-                <FormControl id="num-rooms" isRequired>
-                  <FormLabel color="gray.800">Number of Rooms</FormLabel>
-                  <Input type="number" name="num-rooms" placeholder="Enter number of rooms" color="gray.700" min={1} max={10} defaultValue={1} />
-                </FormControl>
-              </GridItem>
-
-              <GridItem colSpan={{ base: 1, md: 2 }}>
-                <FormControl id="ac-nonac" isRequired>
-                  <FormLabel color="gray.800">Room Type</FormLabel>
-                  <Select name="ac-nonac" color="gray.700">
-                    <option value="ac">AC</option>
-                    <option value="non-ac">Non-AC</option>
-                  </Select>
-                </FormControl>
-              </GridItem>
-
-              <GridItem colSpan={{ base: 1, md: 2 }}>
-                <FormControl id="info">
-                  <FormLabel color="gray.800">Additional Information / Special Requests</FormLabel>
-                  <Input as="textarea" name="info" placeholder="Any special requests?" color="gray.700" />
-                </FormControl>
-              </GridItem>
-              </Grid>
-              <Flex justify="center" mt={4}>
-                <Button type="submit" colorScheme="teal" size="lg">
-                  Submit
-                </Button>
-              </Flex>
-            </form>
-        </Box>
-      </Flex>
+                </div>
+              </div>
+              <div className="md:col-span-2">
+                <label htmlFor="ac-nonac" className="block text-gray-800 font-semibold mb-2">
+                  Room Type
+                </label>
+                <select
+                  name="ac-nonac"
+                  id="ac-nonac"
+                  className="w-full border border-gray-300 p-2 rounded"
+                  required
+                >
+                  <option value="ac">AC</option>
+                  <option value="non-ac">Non-AC</option>
+                </select>
+              </div>
+              <div className="md:col-span-2">
+                <label htmlFor="info" className="block text-gray-800 font-semibold mb-2">
+                  Additional Information / Special Requests
+                </label>
+                <textarea
+                  name="info"
+                  id="info"
+                  className="w-full border border-gray-300 p-2 rounded"
+                  placeholder="Any special requests?"
+                />
+              </div>
+            </div>
+            <div className="flex justify-center mt-4">
+              <Button type="submit" colorScheme="teal" size="lg" width="full">
+                Submit
+              </Button>
+            </div>
+          </form>
+        </div>
+      </div>
     </>
   );
 };
