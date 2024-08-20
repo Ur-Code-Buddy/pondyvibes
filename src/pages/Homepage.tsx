@@ -127,7 +127,7 @@ const Homepage: React.FC = () => {
           reverse
         />
         <Section
-          image="http://tanto.in/wp-content/uploads/2017/08/1.jpg"
+          image="https://plus.unsplash.com/premium_photo-1664472619078-9db415ebef44?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           text="Indulge in the authentic French cuisine, a delightful blend of French flavors."
         />
         <Section

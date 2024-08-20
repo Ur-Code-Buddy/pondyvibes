@@ -34,6 +34,7 @@ const FormPage: React.FC = () => {
     const data = { firstName: formData.get('first-name') as string, lastName: formData.get('last-name') as string, email: formData.get('email') as string, phone: formData.get('phone') as string, dateFrom: startDate?.toISOString() ?? '', dateTo: endDate?.toISOString() ?? '', numPersons: formData.get('num-persons') as string, numRooms: formData.get('num-rooms') as string, roomType: formData.get('ac-nonac') as string, info: formData.get('info') as string };
     const emailBody = `<h1>Booking Request</h1><p><strong>First Name:</strong> ${data.firstName}</p><p><strong>Last Name:</strong> ${data.lastName}</p><p><strong>Email Address:</strong> ${data.email}</p><p><strong>Phone Number:</strong> ${data.phone}</p><p><strong>Date of Stay (From):</strong> ${data.dateFrom}</p><p><strong>Date of Stay (To):</strong> ${data.dateTo}</p><p><strong>Number of Persons:</strong> ${data.numPersons}</p><p><strong>Number of Rooms:</strong> ${data.numRooms}</p><p><strong>Room Type:</strong> ${data.roomType}</p><p><strong>Additional Information / Special Requests:</strong> ${data.info}</p>`;
     try {
+      console.log(emailBody);
       const response = await axios.post('/send_mail', { subject: 'New Booking Request', html: emailBody });
       if (response.status === 200) {
         toast({ title: 'Form Submitted', description: 'Your form has been submitted successfully.', status: 'success', duration: 5000, isClosable: true });
@@ -54,7 +55,7 @@ const FormPage: React.FC = () => {
   return (
     <div className="relative min-h-screen flex flex-col">
       <Navbar links={navLinks} />
-      <div className="flex-1 flex items-center justify-center bg-cover bg-center pt-10"
+      <div className="flex-1 flex items-center justify-center bg-cover bg-center pt-20 md:pt-10"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1582549023823-b5984434f8f7?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
       >
         <div className="bg-white bg-opacity-90 p-4 rounded-lg shadow-lg w-full max-w-2xl mx-auto border border-gray-300 mb-8">
