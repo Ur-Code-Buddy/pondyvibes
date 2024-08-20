@@ -28,24 +28,71 @@ const FormPage: React.FC = () => {
   }, [toast]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-
     event.preventDefault();
+  
     const formData = new FormData(event.currentTarget);
-    const data = { firstName: formData.get('first-name') as string, lastName: formData.get('last-name') as string, email: formData.get('email') as string, phone: formData.get('phone') as string, dateFrom: startDate?.toISOString() ?? '', dateTo: endDate?.toISOString() ?? '', numPersons: formData.get('num-persons') as string, numRooms: formData.get('num-rooms') as string, roomType: formData.get('ac-nonac') as string, info: formData.get('info') as string };
-    const emailBody = `<h1>Booking Request</h1><p><strong>First Name:</strong> ${data.firstName}</p><p><strong>Last Name:</strong> ${data.lastName}</p><p><strong>Email Address:</strong> ${data.email}</p><p><strong>Phone Number:</strong> ${data.phone}</p><p><strong>Date of Stay (From):</strong> ${data.dateFrom}</p><p><strong>Date of Stay (To):</strong> ${data.dateTo}</p><p><strong>Number of Persons:</strong> ${data.numPersons}</p><p><strong>Number of Rooms:</strong> ${data.numRooms}</p><p><strong>Room Type:</strong> ${data.roomType}</p><p><strong>Additional Information / Special Requests:</strong> ${data.info}</p>`;
+    const data = {
+      firstName: formData.get('first-name') as string,
+      lastName: formData.get('last-name') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      dateFrom: startDate?.toISOString() ?? '',
+      dateTo: endDate?.toISOString() ?? '',
+      numPersons: formData.get('num-persons') as string,
+      numRooms: formData.get('num-rooms') as string,
+      roomType: formData.get('ac-nonac') as string,
+      info: formData.get('info') as string,
+    };
+  
+    const message = `
+      <h1>Booking Request</h1>
+      <p><strong>First Name:</strong> ${data.firstName}</p>
+      <p><strong>Last Name:</strong> ${data.lastName}</p>
+      <p><strong>Email Address:</strong> ${data.email}</p>
+      <p><strong>Phone Number:</strong> ${data.phone}</p>
+      <p><strong>Date of Stay (From):</strong> ${data.dateFrom}</p>
+      <p><strong>Date of Stay (To):</strong> ${data.dateTo}</p>
+      <p><strong>Number of Persons:</strong> ${data.numPersons}</p>
+      <p><strong>Number of Rooms:</strong> ${data.numRooms}</p>
+      <p><strong>Room Type:</strong> ${data.roomType}</p>
+      <p><strong>Additional Information / Special Requests:</strong> ${data.info}</p>
+    `;
+  
     try {
-      console.log(emailBody);
-      const response = await axios.post('/send_mail', { subject: 'New Booking Request', html: emailBody });
+      const response = await axios.post('https://pondyvibes.05baivab.workers.dev/send_message', {
+        message: message,
+      });
+  
       if (response.status === 200) {
-        toast({ title: 'Form Submitted', description: 'Your form has been submitted successfully.', status: 'success', duration: 5000, isClosable: true });
+        toast({
+          title: 'Form Submitted',
+          description: 'Your form has been submitted successfully.',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
         navigate('/');
       } else {
-        toast({ title: 'Submission Failed', description: 'Failed to send the form. Please try again.', status: 'error', duration: 5000, isClosable: true });
+        toast({
+          title: 'Submission Failed',
+          description: 'Failed to send the form. Please try again.',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
       }
     } catch (error) {
-      toast({ title: 'Error', description: 'An error occurred while submitting the form. Please try again.', status: 'error', duration: 5000, isClosable: true });
+      toast({
+        title: 'Error',
+        description: 'An error occurred while submitting the form. Please try again.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
+  
+  
 
   const navLinks = [
     { name: 'Homepage', path: '/' },
