@@ -26,7 +26,7 @@ const imageUrls = [
   'https://imgs.search.brave.com/qCev5plByjn9ZvnhQGiOozOGSOmJSvBVC_P1zKxvEQU/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMyLnRyaXBvdG8u/Y29tL21lZGlhL2Zp/bHRlci90c3QvaW1n/LzEyNTEwNzUvVHJp/cERvY3VtZW50LzE2/MjM1MjUzNTNfMF8x/ZXI5ZmVld3BhcWx0/YWswLmpwZy53ZWJw',
   'https://imgs.search.brave.com/hnsi6d3poJqTVh0eOwiMkZwT8lk2ZV4gxgq6mJ8Hs-A/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy84/LzhjL1BvbmRpY2hl/cnJ5LVJvY2tfYmVh/Y2hfYWVyaWFsX3Zp/ZXcuanBn',
   'https://img.veenaworld.com/wp-content/uploads/2023/03/10-Things-That-Make-Pondicherry-An-Unforgetful-Travel-Destination.jpg',
-  'http://www.theuntourists.com/wp-content/uploads/2015/11/DSCF41881.jpg',
+  'https://imgs.search.brave.com/iWL4GGhR1BelKKBadPWAQ_6vbo8DU050jCn5rMiisOA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdHJl/ZXRhcnR1dG9waWEu/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDIyLzA1L1N0cmVl/dC1BcnQtaW4tUG9u/ZGljaGVycnktSW5k/aWEtMi1mbG93ZXIt/Z2lybC1oYWlyLTMt/OTAweDEyMDAuanBn/P2Nyb3A9MQ',
   'https://static2.tripoto.com/media/filter/nl/img/187611/TripDocument/1493120153_promenade_beach_pondicherry.jpg',
   'https://static2.tripoto.com/media/filter/nl/img/187611/TripDocument/1493120381_travels_pondicherry.png',
   'https://i.pinimg.com/736x/4c/ea/6c/4cea6caeece6f3ae6ae0920f03d31bcb.jpg',
