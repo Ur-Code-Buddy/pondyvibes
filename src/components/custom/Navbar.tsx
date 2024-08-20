@@ -54,9 +54,9 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
       <Drawer isOpen={isOpen} onClose={onClose} placement="right" size="sm">
         <DrawerOverlay>
           <DrawerContent 
-            bgImage="url(https://images.unsplash.com/photo-1600761650113-ae2ac770f283?q=80&w=2090&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)" 
-            bgSize="cover" 
-            bgPosition="center" 
+            // bgImage="url(https://images.unsplash.com/photo-1548177089-f2a0f410eb12?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)"
+            // bgSize="cover"
+            bgPosition="center"
             bgColor="rgba(0, 0, 0, 0.7)" // Fallback color
           >
             <DrawerCloseButton />
@@ -65,8 +65,9 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
               textAlign="center" 
               borderBottom="1px solid rgba(255, 255, 255, 0.3)"
               fontSize="xl"
+              p={4}
             >
-              PondyRetreats
+              Menu
             </DrawerHeader>
             <DrawerBody>
               <Flex direction="column" align="center" gap={6} mt={4}>
