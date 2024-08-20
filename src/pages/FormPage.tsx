@@ -44,24 +44,8 @@ const FormPage: React.FC = () => {
       info: formData.get('info') as string,
     };
   
-    const message = `
-      <h1>Booking Request</h1>
-      <p><strong>First Name:</strong> ${data.firstName}</p>
-      <p><strong>Last Name:</strong> ${data.lastName}</p>
-      <p><strong>Email Address:</strong> ${data.email}</p>
-      <p><strong>Phone Number:</strong> ${data.phone}</p>
-      <p><strong>Date of Stay (From):</strong> ${data.dateFrom}</p>
-      <p><strong>Date of Stay (To):</strong> ${data.dateTo}</p>
-      <p><strong>Number of Persons:</strong> ${data.numPersons}</p>
-      <p><strong>Number of Rooms:</strong> ${data.numRooms}</p>
-      <p><strong>Room Type:</strong> ${data.roomType}</p>
-      <p><strong>Additional Information / Special Requests:</strong> ${data.info}</p>
-    `;
-  
     try {
-      const response = await axios.post('https://pondyvibes.05baivab.workers.dev/send_message', {
-        message: message,
-      });
+      const response = await axios.post('https://pondyvibes.05baivab.workers.dev/send_message', data); // Send the data directly
   
       if (response.status === 200) {
         toast({
@@ -91,6 +75,8 @@ const FormPage: React.FC = () => {
       });
     }
   };
+  
+  
   
   
 
