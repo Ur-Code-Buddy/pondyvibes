@@ -47,7 +47,33 @@ const captions = [
   "Wander through the lively markets of Pondicherry.",
   "Experience the charm of Pondicherry at night.",
   "An early morning stroll through the scenic streets.",
+  "Immerse yourself in Pondicherry's historic French quarter.",
+  "Unwind with a peaceful walk along Pondicherry's sandy shores.",
+  "Explore the colorful colonial architecture of Pondicherry.",
+  "Feel the ocean breeze as you enjoy a sunset at the beach.",
+  "Delight in the local cuisine at Pondicherry’s bustling cafes.",
+  "Witness the vibrant festivals lighting up Pondicherry's streets.",
+  "Stroll through serene gardens and lush greenery in Pondicherry.",
+  "Capture the essence of Pondicherry’s artistic spirit in its galleries.",
+  "Relax with a cup of coffee while overlooking Pondicherry’s charming rooftops.",
+  "Discover the unique blend of cultures in Pondicherry's diverse neighborhoods.",
+  "Marvel at the historic temples scattered throughout Pondicherry.",
+  "Enjoy a leisurely boat ride on the peaceful backwaters of Pondicherry.",
+  "Experience the lively street performances and local music scenes.",
+  "Take in the stunning views from Pondicherry's coastal promenades.",
+  "Explore the hidden gems of Pondicherry’s quaint alleyways.",
+  "Savor traditional Pondicherry dishes at local street food stalls.",
+  "Admire the vibrant street art and murals that adorn the city.",
+  "Relax at a cozy beachside shack with stunning ocean views.",
+  "Rejuvenate at one of Pondicherry’s renowned wellness retreats.",
+  "Discover the rich cultural heritage through local museums and exhibits.",
+  "Enjoy a sunset yoga session on the serene beaches of Pondicherry.",
+  "Experience the festive spirit during Pondicherry’s colorful celebrations.",
+  "Take a scenic bike ride through Pondicherry's picturesque landscapes.",
+  "Find tranquility in the peaceful parks and green spaces around the city.",
+  "Explore the unique blend of Indian and French architectural styles.",
 ];
+
 
 export function ImagePage() {
   const navLinks = [
