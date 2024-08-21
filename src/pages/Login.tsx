@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Flex, Heading, FormControl, FormLabel, Input, Textarea, Button, useColorMode, Stack, useToast } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for routing
 import axios from 'axios';
 
 const AdminPanel: React.FC = () => {
@@ -11,6 +12,7 @@ const AdminPanel: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const toast = useToast();
+  const navigate = useNavigate(); // Initialize navigate
 
   const handleLogin = async () => {
     setLoading(true);
@@ -63,8 +65,8 @@ const AdminPanel: React.FC = () => {
   
       const response = await axios.post(
         'https://pondyretreats.pijushkantisikdar1980.workers.dev/store_content',
-        { content: message }, // Message is in the body under the key "content"
-        { headers: authHeaders } // Username and password are in headers
+        { content: message },
+        { headers: authHeaders }
       );
   
       if (response.data.success) {
@@ -75,7 +77,7 @@ const AdminPanel: React.FC = () => {
           duration: 5000,
           isClosable: true,
         });
-        setMessage(''); // Clear message input after successful upload
+        setMessage('');
       } else {
         toast({
           title: 'Upload Failed',
@@ -97,7 +99,6 @@ const AdminPanel: React.FC = () => {
       setLoading(false);
     }
   };
-  
 
   return (
     <Flex
@@ -111,6 +112,19 @@ const AdminPanel: React.FC = () => {
       backgroundSize="cover"
       backgroundPosition="center"
     >
+      {/* Top right button to go to root */}
+      {loggedIn && (
+        <Button
+          position="absolute"
+          top={4}
+          right={4}
+          colorScheme="teal"
+          onClick={() => navigate('/')} // Navigate to root
+        >
+          Go to Home
+        </Button>
+      )}
+
       <Box
         p={8}
         bg="rgba(255, 255, 255, 0.8)"
