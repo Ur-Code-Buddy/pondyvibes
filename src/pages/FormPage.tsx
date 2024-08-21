@@ -16,7 +16,7 @@ const FormPage: React.FC = () => {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const response = await axios.get('https://pondyvibes.05baivab.workers.dev/get_content');
+        const response = await axios.get('https://pondyretreats.pijushkantisikdar1980.workers.dev/get_content');
         if (response.data.success) {
           toast({ title: response.data.content, status: 'info', duration: 15000, isClosable: true, position: "bottom-left" });
         }
@@ -45,7 +45,7 @@ const FormPage: React.FC = () => {
     };
   
     try {
-      const response = await axios.post('https://pondyvibes.05baivab.workers.dev/send_message', data); // Send the data directly
+      const response = await axios.post('https://pondyretreats.pijushkantisikdar1980.workers.dev/send_message', data); // Send the data directly
   
       if (response.status === 200) {
         toast({

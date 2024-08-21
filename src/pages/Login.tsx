@@ -15,7 +15,7 @@ const AdminPanel: React.FC = () => {
   const handleLogin = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('https://pondyvibes.05baivab.workers.dev/login', {
+      const response = await axios.get('https://pondyretreats.pijushkantisikdar1980.workers.dev/login', {
         headers: {
           'username': username,
           'password': password,
@@ -62,7 +62,7 @@ const AdminPanel: React.FC = () => {
       };
   
       const response = await axios.post(
-        'https://pondyvibes.05baivab.workers.dev/store_content',
+        'https://pondyretreats.pijushkantisikdar1980.workers.dev/store_content',
         { content: message }, // Message is in the body under the key "content"
         { headers: authHeaders } // Username and password are in headers
       );
