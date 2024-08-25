@@ -4,7 +4,8 @@ import { Button, useToast } from '@chakra-ui/react';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/custom/Navbar';  // Adjust the import path as necessary
+import Navbar from '../components/custom/Navbar';
+import SEO from '../components/custom/Helmet';  // Adjust the import path as necessary
 
 const FormPage: React.FC = () => {
   const navigate = useNavigate();
@@ -86,29 +87,42 @@ const FormPage: React.FC = () => {
   ];
 
   return (
-    <div className="relative min-h-screen flex flex-col">
-      <Navbar links={navLinks} />
-      <div className="flex-1 flex items-center justify-center bg-cover bg-center pt-20 md:pt-10"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1582549023823-b5984434f8f7?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
-      >
-        <div className="bg-white bg-opacity-90 p-4 rounded-lg shadow-lg w-full max-w-2xl mx-auto border border-gray-300 mb-8">
-          <h2 className="text-xl font-semibold mb-3 text-gray-800 text-center">Book Your Stay</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div><label htmlFor="first-name" className="block text-gray-800 font-medium mb-1 text-sm">First Name</label><input type="text" name="first-name" id="first-name" className="w-full border border-gray-300 p-1 rounded text-sm" placeholder="John" required /></div>
-              <div><label htmlFor="last-name" className="block text-gray-800 font-medium mb-1 text-sm">Last Name</label><input type="text" name="last-name" id="last-name" className="w-full border border-gray-300 p-1 rounded text-sm" placeholder="Doe" /></div>
-              <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-3"><div><label htmlFor="email" className="block text-gray-800 font-medium mb-1 text-sm">Email Address</label><input type="email" name="email" id="email" className="w-full border border-gray-300 p-1 rounded text-sm" placeholder="example@example.com" required /></div><div><label htmlFor="phone" className="block text-gray-800 font-medium mb-1 text-sm">Phone Number</label><input type="tel" name="phone" id="phone" className="w-full border border-gray-300 p-1 rounded text-sm" placeholder="123-456-7890" pattern="[0-9]*" inputMode="numeric" required /></div></div>
-              <div><label htmlFor="date-from" className="block text-gray-800 font-medium mb-1 text-sm">Check-in date</label><DatePicker selected={startDate} onChange={(date) => setStartDate(date as Date)} dateFormat="MMMM d, yyyy" minDate={today} className="w-full border border-gray-300 p-1 rounded text-sm" /></div>
-              <div><label htmlFor="date-to" className="block text-gray-800 font-medium mb-1 text-sm">Check-out date</label><DatePicker selected={endDate} onChange={(date) => setEndDate(date as Date)} dateFormat="MMMM d, yyyy" minDate={startDate ? new Date(startDate.getTime() + 86400000) : today} className="w-full border border-gray-300 p-1 rounded text-sm" /></div>
-              <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-3"><div><label htmlFor="num-persons" className="block text-gray-800 font-medium mb-1 text-sm">Number of Persons</label><input type="number" name="num-persons" id="num-persons" className="w-full border border-gray-300 p-1 rounded text-sm" min={1} max={10} defaultValue={1} required /></div><div><label htmlFor="num-rooms" className="block text-gray-800 font-medium mb-1 text-sm">Number of Rooms</label><input type="number" name="num-rooms" id="num-rooms" className="w-full border border-gray-300 p-1 rounded text-sm" min={1} max={10} defaultValue={1} required /></div></div>
-              <div className="md:col-span-2"><label htmlFor="ac-nonac" className="block text-gray-800 font-medium mb-1 text-sm">Room Type</label><select name="ac-nonac" id="ac-nonac" className="w-full border border-gray-300 p-1 rounded text-sm" required><option value="ac">AC</option><option value="non-ac">Non-AC</option></select></div>
-              <div className="md:col-span-2"><label htmlFor="info" className="block text-gray-800 font-medium mb-1 text-sm">Additional Information / Special Requests</label><textarea name="info" id="info" className="w-full border border-gray-300 p-1 rounded text-sm" placeholder="Any special requests?" /></div>
-            </div>
-            <div className="flex justify-center mt-4"><Button type="submit" colorScheme="teal" size="md" width="full">Submit</Button></div>
-          </form>
+    <>
+    <SEO
+        title="Pondyretreats | Contact Us"
+        description="Get in touch with us at Pondyretreats. Fill out the form for any inquiries or reservations."
+        keywords="contact pondyretreats, pondicherry rentals, pondicherry inquiries"
+        image="https://images.unsplash.com/photo-1598792598750-1f0dc619e6a2?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        url="https://pondyretreats.in/contact"
+        authorName="Baivab Dutta"
+        authorEmail="05baivab@gmail.com"
+      />
+    
+    
+      <div className="relative min-h-screen flex flex-col">
+        <Navbar links={navLinks} />
+        <div className="flex-1 flex items-center justify-center bg-cover bg-center pt-20 md:pt-10"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1582549023823-b5984434f8f7?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
+        >
+          <div className="bg-white bg-opacity-90 p-4 rounded-lg shadow-lg w-full max-w-2xl mx-auto border border-gray-300 mb-8">
+            <h2 className="text-xl font-semibold mb-3 text-gray-800 text-center">Book Your Stay</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div><label htmlFor="first-name" className="block text-gray-800 font-medium mb-1 text-sm">First Name</label><input type="text" name="first-name" id="first-name" className="w-full border border-gray-300 p-1 rounded text-sm" placeholder="John" required /></div>
+                <div><label htmlFor="last-name" className="block text-gray-800 font-medium mb-1 text-sm">Last Name</label><input type="text" name="last-name" id="last-name" className="w-full border border-gray-300 p-1 rounded text-sm" placeholder="Doe" /></div>
+                <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-3"><div><label htmlFor="email" className="block text-gray-800 font-medium mb-1 text-sm">Email Address</label><input type="email" name="email" id="email" className="w-full border border-gray-300 p-1 rounded text-sm" placeholder="example@example.com" required /></div><div><label htmlFor="phone" className="block text-gray-800 font-medium mb-1 text-sm">Phone Number</label><input type="tel" name="phone" id="phone" className="w-full border border-gray-300 p-1 rounded text-sm" placeholder="123-456-7890" pattern="[0-9]*" inputMode="numeric" required /></div></div>
+                <div><label htmlFor="date-from" className="block text-gray-800 font-medium mb-1 text-sm">Check-in date</label><DatePicker selected={startDate} onChange={(date) => setStartDate(date as Date)} dateFormat="MMMM d, yyyy" minDate={today} className="w-full border border-gray-300 p-1 rounded text-sm" /></div>
+                <div><label htmlFor="date-to" className="block text-gray-800 font-medium mb-1 text-sm">Check-out date</label><DatePicker selected={endDate} onChange={(date) => setEndDate(date as Date)} dateFormat="MMMM d, yyyy" minDate={startDate ? new Date(startDate.getTime() + 86400000) : today} className="w-full border border-gray-300 p-1 rounded text-sm" /></div>
+                <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-3"><div><label htmlFor="num-persons" className="block text-gray-800 font-medium mb-1 text-sm">Number of Persons</label><input type="number" name="num-persons" id="num-persons" className="w-full border border-gray-300 p-1 rounded text-sm" min={1} max={10} defaultValue={1} required /></div><div><label htmlFor="num-rooms" className="block text-gray-800 font-medium mb-1 text-sm">Number of Rooms</label><input type="number" name="num-rooms" id="num-rooms" className="w-full border border-gray-300 p-1 rounded text-sm" min={1} max={10} defaultValue={1} required /></div></div>
+                <div className="md:col-span-2"><label htmlFor="ac-nonac" className="block text-gray-800 font-medium mb-1 text-sm">Room Type</label><select name="ac-nonac" id="ac-nonac" className="w-full border border-gray-300 p-1 rounded text-sm" required><option value="ac">AC</option><option value="non-ac">Non-AC</option></select></div>
+                <div className="md:col-span-2"><label htmlFor="info" className="block text-gray-800 font-medium mb-1 text-sm">Additional Information / Special Requests</label><textarea name="info" id="info" className="w-full border border-gray-300 p-1 rounded text-sm" placeholder="Any special requests?" /></div>
+              </div>
+              <div className="flex justify-center mt-4"><Button type="submit" colorScheme="teal" size="md" width="full">Submit</Button></div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

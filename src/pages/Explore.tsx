@@ -1,6 +1,7 @@
 
 import { CardBody, CardContainer, CardItem } from "../components/ui/3d-card";
-import Navbar from '../components/custom/Navbar'; // Import the Navbar component
+import Navbar from '../components/custom/Navbar'; 
+import SEO from "../components/custom/Helmet";
 
 const imageUrls = [
   'https://www.wanderershub.com/wp-content/uploads/2023/09/Cafe-des-Art-Puducherry.jpg',
@@ -81,28 +82,39 @@ export function ImagePage() {
     { name: 'Contact', path: '/form' },
   ];
   return (
-    <div className="relative min-h-screen bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1476900543704-4312b78632f8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}>
-      <div className="absolute inset-0 bg-black/50"></div> {/* Optional overlay for better text readability */}
-      <Navbar links={navLinks} />
-      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-        {imageUrls.map((url, index) => (
-          <CardContainer key={index} className="inter-var w-full">
-            <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-blue-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] rounded-xl p-4 border">
-              <CardItem translateZ="100" className="w-full mt-4">
-                <img
-                  src={url}
-                  alt={`Image ${index + 1}`}
-                  className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                />
-              </CardItem>
-              <div className="mt-4 p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-sm text-neutral-600 dark:text-neutral-300">
-                {captions[index]}
-              </div>
-            </CardBody>
-          </CardContainer>
-        ))}
+    <>
+      <SEO
+        title="Explore Pondicherry | Pondyretreats"
+        description="Explore the picturesque beauty of Pondicherry through our curated gallery of stunning images capturing the essence of this charming city."
+        keywords="Pondicherry, travel, images, gallery, explore, tourist attractions, photography"
+        image="https://images.unsplash.com/photo-1476900543704-4312b78632f8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        url="https://pondyretreats.in/explore"
+        authorName="Baivab Dutta"
+        authorEmail="05baivab@gmail.com"
+      />
+      <div className="relative min-h-screen bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1476900543704-4312b78632f8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}>
+        <div className="absolute inset-0 bg-black/50"></div> {/* Optional overlay for better text readability */}
+        <Navbar links={navLinks} />
+        <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+          {imageUrls.map((url, index) => (
+            <CardContainer key={index} className="inter-var w-full">
+              <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-blue-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] rounded-xl p-4 border">
+                <CardItem translateZ="100" className="w-full mt-4">
+                  <img
+                    src={url}
+                    alt={`Image ${index + 1}`}
+                    className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                  />
+                </CardItem>
+                <div className="mt-4 p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-sm text-neutral-600 dark:text-neutral-300">
+                  {captions[index]}
+                </div>
+              </CardBody>
+            </CardContainer>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,7 +1,8 @@
-import React from 'react';
+import React from 'react'; 
 import { Box, Flex, Heading, Text, Image, Stack, Button, useColorMode } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/custom/Navbar'; // Import the Navbar component
+import Navbar from '../components/custom/Navbar';
+import SEO from '../components/custom/Helmet';
 
 const HeroSection: React.FC = () => {
   const texts = [
@@ -114,6 +115,17 @@ const Homepage: React.FC = () => {
   ];
   return (
     <>
+      <SEO
+        title="Pondyretreats | Book Your Dream Stay in Pondicherry"
+        description="Visiting Pondicherry the fun way. Book your stay today at Pondyretreats for a comfortable and luxurious experience."
+        keywords="pondicherry, travelling to pondicherry, rentals"
+        image="https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        url="https://pondyretreats.in/"
+        type="website"
+        authorName="Baivab Dutta"
+        authorEmail="05baivab@gmail.com"
+      />
+
       <Navbar links={navLinks} />
       <HeroSection />
       <Stack spacing={16} mt={-24} bg="white">
