@@ -131,20 +131,20 @@ const Homepage: React.FC = () => {
       <Stack spacing={16} mt={-24} bg="white">
         <Section
           image="https://images.unsplash.com/photo-1662572594228-3aca8503b782?q=80&w=1776&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          text="Explore the charming French Quarter, with its quaint streets and colorful buildings."
+          text="Explore the French Quarter's charm as you stroll through cobblestone streets lined with colorful, historic buildings. Discover this vibrant district, where French colonial architecture and unique boutiques create a captivating atmosphere."
         />
         <Section
           image="https://images.unsplash.com/photo-1709969623540-fa2d8603eef7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          text="Relax on the golden beaches and enjoy the calm waves of the Bay of Bengal."
+          text="Admire the serene beauty of Pondicherry's coastline from above, where golden sands meet the tranquil waves of the Bay of Bengal. This stunning view captures the peaceful essence of Pondicherry's coastal charm."
           reverse
         />
         <Section
           image="https://plus.unsplash.com/premium_photo-1664472619078-9db415ebef44?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          text="Indulge in the authentic French cuisine, a delightful blend of French flavors."
+          text="Experience the rich flavors of French cuisine, where culinary artistry and tradition blend to create a dining experience that delights the senses. Each dish is a celebration of fine ingredients and timeless techniques, offering a true taste of France."
         />
         <Section
           image="https://images.unsplash.com/photo-1598792598750-1f0dc619e6a2?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          text="Visit Auroville, the capital of the State of Pondicherry, with its stunning architecture and culture."
+          text="Experience the serenity of Auroville, where the golden Matrimandir dome symbolizes unity and peace. This unique community in Pondicherry invites you to explore a vision of universal harmony amidst lush, tranquil surroundings."
           reverse
         />
       </Stack>
