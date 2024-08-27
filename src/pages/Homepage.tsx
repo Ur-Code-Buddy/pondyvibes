@@ -90,7 +90,7 @@ const Footer: React.FC = () => (
   <Box bg="gray.100" p={4} mt={16}>
     <Flex direction={{ base: 'column', md: 'row' }} justify="space-between" align="center" maxW="1200px" mx="auto">
       <Text color="gray.600" textAlign={{ base: 'center', md: 'left' }}>
-        © 2024 Pondicherry Stays. All rights reserved.
+        © 2024 PondyRetreats. All rights reserved.
       </Text>
       <Flex gap={4} direction={{ base: 'column', md: 'row' }} align="center">
         <Link to="/privacy">
