@@ -92,18 +92,6 @@ const Footer: React.FC = () => (
       <Text color="gray.600" textAlign={{ base: 'center', md: 'left' }}>
         © 2024 PondyRetreats. All rights reserved.
       </Text>
-      <Flex gap={4} direction={{ base: 'column', md: 'row' }} align="center">
-        <Link to="/privacy">
-          <Text color="gray.600" _hover={{ color: 'teal.500' }}>
-            Privacy Policy
-          </Text>
-        </Link>
-        <Link to="/terms">
-          <Text color="gray.600" _hover={{ color: 'teal.500' }}>
-            Terms of Service
-          </Text>
-        </Link>
-      </Flex>
     </Flex>
   </Box>
 );
